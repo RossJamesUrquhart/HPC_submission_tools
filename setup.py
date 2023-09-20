@@ -15,7 +15,7 @@ setup(
   author = 'Ross Urquhart',                   # Type in your name
   author_email = 'ross.urquhart@strath.ac.uk',      # Type in your E-Mail
   url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v0.1-alpha.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v0.1.1-alpha.tar.gz',    # I explain this later on
   keywords = ['HPC', 'Command line'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'os',
