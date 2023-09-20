@@ -9,13 +9,13 @@ from distutils.core import setup
 setup(
   name = 'HPC_submission_tools',         # How you named your package folder (MyLib)
   packages = ['HPC_submission_tools'],   # Chose the same as "name"
-  version = '0.1.1.1',      # Start with a small number and increase it with every change you make
+  version = '0.2.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Tools pertaining to use of HPC clusters with slurm file systems',   # Give a short description about your library
   author = 'Ross Urquhart',                   # Type in your name
   author_email = 'ross.urquhart@strath.ac.uk',      # Type in your E-Mail
   url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v0.1.1.1-alpha.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v0.2.1-alpha.tar.gz',    # I explain this later on
   keywords = ['HPC', 'Command line'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'os',
