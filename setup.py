@@ -9,7 +9,7 @@ from distutils.core import setup
 setup(
   name = 'HPC_submission_tools',         # How you named your package folder (MyLib)
   packages = ['HPC_submission_tools'],   # Chose the same as "name"
-  version = '0.1',      # Start with a small number and increase it with every change you make
+  version = '0.1.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Tools pertaining to use of HPC clusters with slurm file systems',   # Give a short description about your library
   author = 'Ross Urquhart',                   # Type in your name
