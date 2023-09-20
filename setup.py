@@ -33,6 +33,6 @@ setup(
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.5',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.9.7',      #Specify which pyhton versions that you want to support
+    'Programming Language :: Python :: 3.4',      #Specify which pyhton versions that you want to support
   ],
 )
