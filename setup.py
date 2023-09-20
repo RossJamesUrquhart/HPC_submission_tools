@@ -10,7 +10,7 @@ setup(
   name = 'HPC_submission_tools',         # How you named your package folder (MyLib)
   packages = ['HPC_submission_tools'],   # Chose the same as "name"
   version = '0.1',      # Start with a small number and increase it with every change you make
-  license='cc',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
+  license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Tools pertaining to use of HPC clusters with slurm file systems',   # Give a short description about your library
   author = 'Ross Urquhart',                   # Type in your name
   author_email = 'ross.urquhart@strath.ac.uk',      # Type in your E-Mail
@@ -26,7 +26,7 @@ setup(
     'Development Status :: 3 - Alpha',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
     'Intended Audience :: Developers',      # Define that your audience are developers
     'Topic :: Software Development :: Build Tools',
-    'License :: OSI Approved :: cc License',   # Again, pick a license
+    'License :: OSI Approved :: MIT License',   # Again, pick a license
     'Programming Language :: Python :: 3.9',      #Specify which pyhton versions that you want to support
   ],
 )
