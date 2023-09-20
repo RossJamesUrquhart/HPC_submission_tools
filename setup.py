@@ -8,7 +8,7 @@ Created on Wed Sep 20 11:04:42 2023
 from distutils.core import setup
 setup(
   name = 'HPC_submission_tools',         # How you named your package folder (MyLib)
-  packages = ['YOURPACKAGENAME'],   # Chose the same as "name"
+  packages = ['HPC_submission_tools'],   # Chose the same as "name"
   version = '0.1',      # Start with a small number and increase it with every change you make
   license='cc',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Tools pertaining to use of HPC clusters with slurm file systems',   # Give a short description about your library
