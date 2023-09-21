@@ -27,12 +27,13 @@ class JobSubmitter:
 
     def submit_jobs(self, tasks):
         for task in tasks:
-            name = task.stem.replace(".sh", "")
+            task_path = pathlib.Path(task)
+            name = task_path.stem.replace(".sh", "")
             stripped_name = name
-            extensions = [".inp", ".out", ".opt", "_original.opt", "_original.out", ".xyz"]
+            extensions = [".inp", ".sh", ".out", ".opt", "_original.opt", "_original.out", ".xyz"]
 
             cdir = os.path.abspath(".")
-            folder = task.parent
+            folder = task_path.parent
 
             os.chdir(folder)
             stripped_folder = os.path.join(folder, stripped_name)
