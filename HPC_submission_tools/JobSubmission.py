@@ -13,7 +13,7 @@ Usage:
 from job_submitter import JobSubmitter
     
 job_submitter = JobSubmitter()
-job_submitter.submit_job("path/to/your/task.sh")
+job_submitter.submit_job(["path/to/your/task.sh"], additional_ext: list else None)
 """
 
 import os
@@ -24,13 +24,24 @@ class JobSubmitter:
     def __init__(self):
         self.submitted = 0
         self.i = 0
+        self.extensions = [".inp", 
+                           ".sh", 
+                           ".out", 
+                           ".opt", 
+                           "_original.opt", 
+                           "_original.out", 
+                           ".xyz"]
 
-    def submit_jobs(self, tasks):
+    def submit_jobs(self, tasks: list, additional_ext = None):
+        
+        if additional_ext != None:
+            self.extensions = self.extensions + additional_ext
+        
         for task in tasks:
             task_path = pathlib.Path(task)
             name = task_path.stem.replace(".sh", "")
             stripped_name = name
-            extensions = [".inp", ".sh", ".out", ".opt", "_original.opt", "_original.out", ".xyz"]
+            
 
             cdir = os.path.abspath(".")
             folder = task_path.parent
@@ -39,7 +50,7 @@ class JobSubmitter:
             stripped_folder = os.path.join(folder, stripped_name)
             os.makedirs(stripped_folder, exist_ok=True)
 
-            for ext in extensions:
+            for ext in self.extensions:
                 source = f"{name}{ext}"
                 if os.path.exists(source):
                     shutil.move(source, os.path.join(stripped_folder, source))
