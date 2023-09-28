@@ -6,12 +6,19 @@ Created on Wed Sep 20 11:04:42 2023
 """
 
 from distutils.core import setup
+
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 setup(
   name = 'HPC_submission_tools',         # How you named your package folder (MyLib)
   packages = ['HPC_submission_tools'],   # Chose the same as "name"
   version = '1.1',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Tools pertaining to use of HPC clusters with slurm file systems',   # Give a short description about your library
+  long_description=long_description,
+  long_description_content_type='text/markdown',
   author = 'Ross Urquhart',                   # Type in your name
   author_email = 'ross.urquhart@strath.ac.uk',      # Type in your E-Mail
   url = 'https://github.com/RossJamesUrquhart/HPC_submission_tools',   # Provide either the link to your github or to your website
