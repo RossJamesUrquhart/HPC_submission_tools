@@ -11,4 +11,4 @@ import shutil
 
 # import submodules
 
-from HPC_submission_tools.Jobsubmitter import *
+from HPC_submission_tools.JobSubmitter import *

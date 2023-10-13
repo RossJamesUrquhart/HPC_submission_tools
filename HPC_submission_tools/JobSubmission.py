@@ -38,34 +38,73 @@ class JobSubmitter:
                            "_original.opt", 
                            "_original.out", 
                            ".xyz"]
+        
+    def dos2unix(self, file):
+        """
+        Function to convert dos (Windows) created files to unix based files.
+        
+        Parameters
+        ----------
+        file : str
+            Path to file.
+
+        Returns
+        -------
+        unix file or None.
+
+        """
+        with open(file, 'rb') as f:
+            content = f.read()
+            if b'\r\n' in content:
+                os.system(f'dos2unix {file}')
+            f.close()
 
     def submit_jobs(self, tasks: list, additional_ext = None):
         
-        if additional_ext != None:
-            self.extensions = self.extensions + additional_ext
+        """
+        Function to convert dos (Windows) created files to unix based files.
         
-        for task in tasks:
-            task_path = pathlib.Path(task)
+        Parameters
+        ----------
+        tasks : list
+            List of paths to sbatch files.
+        aidditional_ext: list
+            List of additional file extensions to look for
+            default: None
+
+        Returns
+        -------
+        Submits jobs, returns nothing
+
+        """
+
+        if additional_ext is not None: # add additional extensions to search pool
+            self.extensions += additional_ext
+        
+        for task in tasks: # loop over .sh files
+            task_path = pathlib.Path(task) # get path
             name = task_path.stem.replace(".sh", "")
             stripped_name = name
             
 
-            cdir = os.path.abspath(".")
-            folder = task_path.parent
+            cdir = os.path.abspath(".") # set working directory
+            folder = task_path.parent # get folder that the task is in
 
-            os.chdir(folder)
-            stripped_folder = os.path.join(folder, stripped_name)
-            os.makedirs(stripped_folder, exist_ok=True)
+            os.chdir(folder) # move to that folder
+            if os.name == 'posix': # check if the system is unix based
+                self.dos2unix(task) # if so then run dos2unix on the file
+            stripped_folder = os.path.join(folder, stripped_name) # get a name for the task folder
+            os.makedirs(stripped_folder, exist_ok=True) # make the task folder
 
-            for ext in self.extensions:
+            for ext in self.extensions: # loop over extensions
                 source = f"{name}{ext}"
-                if os.path.exists(source):
+                if os.path.exists(source): # if the file exists move the file to the task folder
                     shutil.move(source, os.path.join(stripped_folder, source))
 
-            os.chdir(stripped_folder)
-            os.system(f"sbatch {name}.sh")
-            os.chdir(cdir)
+            os.chdir(stripped_folder) # move to the task folder
+            os.system(f"sbatch {name}.sh") # submit the job
+            os.chdir(cdir) # move back to the working directory
 
-            self.submitted += 1
-            self.i += 1
+            self.submitted += 1 # add 1
+            self.i += 1 # add 1
             print(f"{self.i} Jobs have been submitted\n")
