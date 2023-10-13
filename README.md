@@ -20,7 +20,7 @@ pip install HPC-submission-tools
 ## JobSubmitter - Usage
 
 ```
-from HPC_submission_tools import JobSubmitter
+from HPC_submission_tools import JobSubmission
 JobSubmitter = JobSubmitter()
 
 JobSubmitter.submit_jobs([path/to/sbatch/files], additional_ext=None)
