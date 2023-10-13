@@ -12,5 +12,5 @@ import ase.io
 
 # import submodules
 
-from HPC_submission_tools.JobSubmitter import *
+from HPC_submission_tools.JobSubmission import *
 from HPC_submission_tools.XYZ2ORCA import *

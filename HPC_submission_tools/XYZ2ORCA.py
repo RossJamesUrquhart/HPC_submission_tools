@@ -73,7 +73,6 @@ module load orca/5.0.4
                 species = frame.get_chemical_symbols() # get species
                 electrons = sum(self.ElectronNos.get(atom, 0) for atom in species) # get number of electrons in molecule
                 multiplicity = str(2) if electrons % 2 == 1 else str(1)
-                print(electrons, multiplicity)
                 multiplicity = str(1) if (multiplicity == "2" and charge == 1) else str(2) # set multiplicity
 
                 with open(jobname, 'w') as f: # open input file
