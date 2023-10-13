@@ -3,6 +3,7 @@ README.md
 setup.cfg
 setup.py
 HPC_submission_tools/JobSubmission.py
+HPC_submission_tools/XYZ2ORCA.py
 HPC_submission_tools/__init__.py
 HPC_submission_tools.egg-info/PKG-INFO
 HPC_submission_tools.egg-info/SOURCES.txt
