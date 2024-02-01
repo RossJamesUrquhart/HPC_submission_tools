@@ -5,6 +5,7 @@ Created on Wed May  4 13:57:18 2022
 @author: bwb16179
 """
 from ase.io import read
+import os
 
 def buffer(string, L, end=True):
     while len(string) < L:
@@ -23,6 +24,14 @@ class XYZ2ORCA:
         self.cores = cores # Number of cores for the job (integer), i.e. 4
         self.time = time # Time for the job i.e. (string) 02:00:00 (hours:minutes:seconds)
         self.add_kwargs = kwargs # additional keyword arguements i.e. list of strings - dispersion, SCF conv, etc.
+        
+        if os.environ['USER'] == 'bwb16179' or os.environ['USER'] == 'rkb19187':
+            self.partition = 'standard'
+            self.account = 'tuttle-rmss'
+        else:
+            self.partition = 'teaching'
+            self.account = 'teaching'
+            
         self.CPU = """#!/bin/bash
 #SBATCH --export=ALL
 #SBATCH --job-name={}
@@ -66,7 +75,7 @@ module load orca/5.0.4
             xyz = self.XYZ.split("/")[-1] # XYZ file
     
             with open(jobname.replace(".inp", ".sh"), 'w') as sbatch: # write an sbatch file
-                sbatch.write(self.CPU.format(inp.replace(".inp", ""), strT, str(CPUS))) # write in the formatted Preamble for the job 
+                sbatch.write(self.CPU.format(inp.replace(".inp", ""), self.account, self.partition, strT, str(CPUS))) # write in the formatted Preamble for the job 
 
                 charge = self.charge # set charge
                 solvent = self.solvent # set solvent
