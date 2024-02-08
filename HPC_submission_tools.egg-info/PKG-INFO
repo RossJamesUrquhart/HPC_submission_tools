@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: HPC-submission-tools
-Version: 1.6
+Version: 1.8
 Summary: Tools pertaining to use of HPC clusters with slurm file systems
 Home-page: https://github.com/RossJamesUrquhart/HPC_submission_tools
-Download-URL: https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v1.6.tar.gz
+Download-URL: https://github.com/RossJamesUrquhart/HPC_submission_tools/archive/refs/tags/v1.8.tar.gz
 Author: Ross Urquhart
 Author-email: ross.urquhart@strath.ac.uk
 License: MIT

@@ -53,7 +53,7 @@ class JobSubmitter:
         unix file or None.
 
         """
-        with open(file, 'rb') as f:
+        with open(file.split("/")[-1], 'rb') as f:
             content = f.read()
             if b'\r\n' in content:
                 os.system(f'dos2unix {file}')

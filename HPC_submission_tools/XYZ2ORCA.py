@@ -14,12 +14,13 @@ def buffer(string, L, end=True):
 
 class XYZ2ORCA:
     
-    def __init__(self, XYZ: list, job: str, functional: str, basis_set: str, charge: int, solvent: str, cores: int, time: str, kwargs: list):
+    def __init__(self, XYZ: list, job: str, functional: str, basis_set: str, charge: int, multiplicity: int, solvent: str, cores: int, time: str, kwargs: list):
         self.XYZ = XYZ # path of xyz file (string) i.e. path/to/job
         self.job = job # Type of DFT job i.e. (string) Opt Freq, OptTS, etc.
         self.functional = functional # Functional for the job i.e. (string)  wB97X
         self.basis_set = basis_set # Basis set for the job, i.e. (string) Def2-SVP
         self.charge = charge # Charge of the system, i.e. (integer) 1
+        self.multiplicity = multiplicity # Multiplicity of the system, i.e. singlet = 1, doublet = 2
         self.solvent = solvent # solvent system i.e. (string) CPCM(Water)
         self.cores = cores # Number of cores for the job (integer), i.e. 4
         self.time = time # Time for the job i.e. (string) 02:00:00 (hours:minutes:seconds)
@@ -35,8 +36,8 @@ class XYZ2ORCA:
         self.CPU = """#!/bin/bash
 #SBATCH --export=ALL
 #SBATCH --job-name={}
-#SBATCH --account=tuttle-rmss
-#SBATCH --partition=standard
+#SBATCH --account={}
+#SBATCH --partition={}
 #SBATCH --time="{}"
 #SBATCH --ntasks={} --nodes=1
 module purge
@@ -81,8 +82,7 @@ module load orca/5.0.4
                 solvent = self.solvent # set solvent
                 species = frame.get_chemical_symbols() # get species
                 electrons = sum(self.ElectronNos.get(atom, 0) for atom in species) # get number of electrons in molecule
-                multiplicity = str(2) if electrons % 2 == 1 else str(1)
-                multiplicity = str(1) if (multiplicity == "2" and charge == 1) else str(2) # set multiplicity
+                multiplicity = self.multiplicity
 
                 with open(jobname, 'w') as f: # open input file
                     functional = self.functional
